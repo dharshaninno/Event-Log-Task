@@ -8,7 +8,6 @@ export class EventAuditController {
 
   @Post()
   async createEventLog(@Body() createEventAuditDto: CreateEventAuditDto) {
-    console.log("check dto passing controller --> ",createEventAuditDto)
     return this.eventAuditService.createEventAuditLog(createEventAuditDto);
   }
   

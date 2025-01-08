@@ -10,14 +10,14 @@ import { EventAuditModule } from './event-audit/event-audit.module';
     ConfigModule.forRoot({
       isGlobal: true,
     }),
-    MongooseModule.forRoot("mongodb+srv://dharshan:dharshan@cluster0.4wdqh.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"),
+    MongooseModule.forRootAsync({
+      useFactory: async () => ({
+        uri: process.env.MONGODB_URI,
+    }),
+  }),
     EventAuditModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {
-  // constructor() {
-  //   console.log('MONGODB_URI:', process.env.MONGODB_URI); // Debugging log
-  // }
-}
+export class AppModule {}

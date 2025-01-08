@@ -11,8 +11,6 @@ export class EventAuditService {
 
   async createEventAuditLog(createEventAuditDto: CreateEventAuditDto): Promise<EventAudit> {
     const eventLog = new this.eventAuditModel(createEventAuditDto);
-    console.log("check dto passing in service",createEventAuditDto)
-    console.log("check eventlog service",eventLog);
     return eventLog.save();
   }
 
