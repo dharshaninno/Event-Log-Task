@@ -18,18 +18,3 @@ export class EventAuditController {
   }
 }
 
-//   @Get(':id')
-//   findOne(@Param('id') id: string) {
-//     return this.eventAuditService.findOne(+id);
-//   }
-
-//   @Patch(':id')
-//   update(@Param('id') id: string, @Body() updateEventAuditDto: UpdateEventAuditDto) {
-//     return this.eventAuditService.update(+id, updateEventAuditDto);
-//   }
-
-//   @Delete(':id')
-//   remove(@Param('id') id: string) {
-//     return this.eventAuditService.remove(+id);
-//   }
-// }

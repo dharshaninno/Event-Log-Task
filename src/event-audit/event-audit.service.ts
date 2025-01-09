@@ -18,19 +18,3 @@ export class EventAuditService {
     return this.eventAuditModel.find().exec();
   }
 }
-
-
-
-
-//   findOne(id: number) {
-//     return `This action returns a #${id} eventAudit`;
-//   }
-
-//   update(id: number, updateEventAuditDto: UpdateEventAuditDto) {
-//     return `This action updates a #${id} eventAudit`;
-//   }
-
-//   remove(id: number) {
-//     return `This action removes a #${id} eventAudit`;
-//   }
-// }

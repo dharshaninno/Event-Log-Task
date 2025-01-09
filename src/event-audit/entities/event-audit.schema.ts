@@ -12,6 +12,9 @@ export class EventAudit extends Document {
   @Prop({ required: true })
   description: string;
 
+  @Prop({ type: Object, default: null }) 
+  custom_attributes?: Record<string, any>;
+
   @Prop({ default: Date.now })
   timestamp: Date;
 }
