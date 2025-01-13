@@ -11,7 +11,6 @@ export class EventAuditController {
     return this.eventAuditService.createEventAuditLog(createEventAuditDto);
   }
   
-
   @Get()
   async getAllEventLog() {
     return this.eventAuditService.getAllEventLog();
