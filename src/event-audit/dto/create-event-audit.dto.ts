@@ -1,11 +1,7 @@
 export class CreateEventAuditDto {
   trace_id: string;
 
-  user: {
-    first_name: string; 
-    last_name: string; 
-    email: string; 
-  };
+  user: string;
 
   event: 'login' | 'logout' | 'password_reset' | 'create';
 

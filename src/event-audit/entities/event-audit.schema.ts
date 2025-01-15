@@ -6,22 +6,37 @@ export class EventAudit extends Document {
   @Prop({ required: true })
   trace_id: string;
 
-  @Prop({
-    required: true,
-    type: {
-      first_name: { type: String, required: true },
-      last_name: { type: String, required: true },
-      email: { type: String, required: true },
-    },
-  })
-  user: {
-    first_name: string;
-    last_name: string;
-    email: string;
-  };
+  @Prop({ required: true })
+  user: string;
 
   @Prop({ required: true })
   event: string;
+
+  @Prop({
+    required: true,
+    get: function (this: EventAudit) {
+      let eventDescription = '';
+      switch (this.event) {
+        case 'reseller_create':
+          eventDescription = `${this.user} created a new reseller with email ${this.user}`;
+          break;
+        case 'reseller_update':
+          eventDescription = `${this.user} updated reseller information with email ${this.user}`;
+          break;
+        case 'password_reset':
+          eventDescription = `${this.user} reset their password with email ${this.user}`;
+          break;
+        case 'logout':
+          eventDescription = `${this.user} logged out with email ${this.user}`;
+          break;
+        default:
+          eventDescription = `${this.user} performed the event: ${this.event} with email ${this.user}`;
+          break;
+      }
+      return eventDescription;
+    },
+  })
+  description: string;
 
   @Prop({ type: Object, default: null })
   before_data?: Record<string, any>;
@@ -34,20 +49,6 @@ export class EventAudit extends Document {
 
   @Prop({ default: Date.now })
   created_at: Date;
-
-  @Prop({
-    required: true,
-    get: function (this: EventAudit) {
-      const name = `${this.user.first_name} ${this.user.last_name}`;
-      const eventDescription =
-        this.event === 'reseller_create'
-          ? `${name} created a new reseller with email ${this.user.email}`
-          : `${name} performed the event: ${this.event} with email ${this.user.email}`;
-
-      return eventDescription;
-    },
-  })
-  description: string;
 }
 
 export const EventAuditSchema = SchemaFactory.createForClass(EventAudit);
